@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  file-parser:
+    build:
+      context: .
+      dockerfile: LabinventTestTask.FileParserService/Dockerfile
+    restart: always
+    volumes:
+      - C:\Users\ALFA\Desktop\XML\:/app/data/XMLStorage
+    environment:
+      - BUILD_CONFIGURATION=Release
+
+  data-processor:
+   build:
+     context: .
+     dockerfile: LabinventTestTask.DataProcessorService/Dockerfile.DPService
+   restart: always
+   environment:
+     - BUILD_CONFIGURATION=Release
+     - DATABASE_URL=Data Source=/app/data/mydatabase.db 
+
+  rabbitmq:
+    build:
+     context: .
+     dockerfile: Docker\Dockerfile.RabbitMQ
+    hostname: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    ports:
+      - 15672:15672
+      - 5672:5672
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+      - ./init.sh:/usr/local/bin/init.sh
+
+volumes:
+  rabbitmq-data:

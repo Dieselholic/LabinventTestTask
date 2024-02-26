@@ -1,0 +1,5 @@
+FROM rabbitmq:3.12.10-management
+
+COPY init.sh /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/init.sh

@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabinventTestTask.FileParserService", "LabinventTestTask.FileParserService\LabinventTestTask.FileParserService.csproj", "{AFB9FAB1-1AC0-4028-919E-7A1414A849FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabinventTestTask.RabbitMQ", "LabinventTestTask.RabbitMQService\LabinventTestTask.RabbitMQ.csproj", "{9B674608-EF45-41E5-A98A-90F2A4F86E5C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabinventTestTask.DataProcessorService", "LabinventTestTask.DataProcessorService\LabinventTestTask.DataProcessorService.csproj", "{A4E18C00-2115-4646-8961-AA3807A886F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabinventTestTask.Domain", "LabinventTestTask.Domain\LabinventTestTask.Domain.csproj", "{9830AE28-6289-4C47-9680-8AE35501E5F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabinventTestTask.Common", "LabinventTestTask.Common\LabinventTestTask.Common.csproj", "{D31D7F74-DF24-4ECC-ADB3-FFC1CC5E7FE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabinventTestTask.Infrastructure", "LabinventTestTask.Infrastructure\LabinventTestTask.Infrastructure.csproj", "{5BFC87A3-C9B2-416D-BE6E-026D9B33313A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{2744E6E6-A694-473E-9368-32A339855639}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{40708A7C-A358-41EF-984F-8C00C50852C2}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		Docker\Dockerfile.RabbitMQ = Docker\Dockerfile.RabbitMQ
+		Docker\Dockerfile.SQLite = Docker\Dockerfile.SQLite
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{10660CA6-9477-45A2-8EA5-930D83B29A5F}"
+	ProjectSection(SolutionItems) = preProject
+		init.sh = init.sh
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFB9FAB1-1AC0-4028-919E-7A1414A849FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB9FAB1-1AC0-4028-919E-7A1414A849FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB9FAB1-1AC0-4028-919E-7A1414A849FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB9FAB1-1AC0-4028-919E-7A1414A849FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B674608-EF45-41E5-A98A-90F2A4F86E5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B674608-EF45-41E5-A98A-90F2A4F86E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B674608-EF45-41E5-A98A-90F2A4F86E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B674608-EF45-41E5-A98A-90F2A4F86E5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4E18C00-2115-4646-8961-AA3807A886F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E18C00-2115-4646-8961-AA3807A886F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E18C00-2115-4646-8961-AA3807A886F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E18C00-2115-4646-8961-AA3807A886F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9830AE28-6289-4C47-9680-8AE35501E5F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9830AE28-6289-4C47-9680-8AE35501E5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9830AE28-6289-4C47-9680-8AE35501E5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9830AE28-6289-4C47-9680-8AE35501E5F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D31D7F74-DF24-4ECC-ADB3-FFC1CC5E7FE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D31D7F74-DF24-4ECC-ADB3-FFC1CC5E7FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D31D7F74-DF24-4ECC-ADB3-FFC1CC5E7FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D31D7F74-DF24-4ECC-ADB3-FFC1CC5E7FE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BFC87A3-C9B2-416D-BE6E-026D9B33313A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BFC87A3-C9B2-416D-BE6E-026D9B33313A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BFC87A3-C9B2-416D-BE6E-026D9B33313A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BFC87A3-C9B2-416D-BE6E-026D9B33313A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{40708A7C-A358-41EF-984F-8C00C50852C2} = {2744E6E6-A694-473E-9368-32A339855639}
+		{10660CA6-9477-45A2-8EA5-930D83B29A5F} = {2744E6E6-A694-473E-9368-32A339855639}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B445311-94A2-4340-A4E6-974DE8FA49C5}
+	EndGlobalSection
+EndGlobal
