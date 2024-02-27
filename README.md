@@ -44,7 +44,7 @@ Located in [this file](test_task(C#).pdf).
      - Replace `[RABBITMQ_CONTAINER_NAME]` with the actual name of your RabbitMQ container.
      - `/usr/local/bin/init.sh` is the full path to the script inside the container.
    
-      >**If you want to change script path, change the following lines**
+      >**If you want to change the script path, change the following lines and re-execute the steps starting from step 3**
       >- [Line 44 in docker-compose.yml](docker-compose.yml#L44)
       >- [Line 3 in Dockerfile.RabbitMQ](Docker/Dockerfile.RabbitMQ#L3)
       >- [Line 5 in Dockerfile.RabbitMQ](Docker/Dockerfile.RabbitMQ#L5)
