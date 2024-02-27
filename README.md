@@ -5,6 +5,25 @@ To run the application locally, we'll use Docker Desktop. I've prepared docker-c
 ## Terms of the task
 Located in [this file](test_task(C#).pdf).
 
+# Changing Applications Settings
+
+You have the flexibility to modify various application properties by editing the `appsettings.json` files for the following services:
+
+- **FileParserService:** [appsettings.json](LabinventTestTask.FileParserService/appsettings.json)
+- **DataProcessorService:** [appsettings.json](LabinventTestTask.DataProcessorService/appsettings.json)
+
+Most of the customization options are self-describing.
+
+### Example Customizations:
+
+1. Enable or Disable File Logging for the DataProcessorService:
+   - In the `DataProcessorService` settings file, modify the ["IsFileLoggingEnabled" parameter in line 4](LabinventTestTask.DataProcessorService/appsettings.json#L4).
+
+2. Configure the xml file directory check interval for the FileParserService:
+   - In the `FileParserService` settings file, change the number of milliseconds in the ["ServiceTimeoutMs" parameter in line 10](LabinventTestTask.FileParserService/appsettings.json#L10).
+
+Feel free to explore and tailor the customization options according to your needs.
+
 ## Steps to Deploy:
 
 0. **Install Docker Desktop:**

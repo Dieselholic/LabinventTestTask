@@ -73,6 +73,10 @@ namespace LabinventTestTask.FileParserService.FileParsing
             {
                 if (Directory.Exists(_xmlStoragePath))
                 {
+                    if (!Directory.EnumerateFileSystemEntries(path:_xmlStoragePath, "*.xml").Any())
+                    {
+                        _loggerService.LogInformation($"This directory doesn't contain any *.xml files.", GetType().Name);
+                    }
                     foreach (var filePath in Directory.GetFiles(_xmlStoragePath, "*.xml"))
                     {
                         ThreadPool.QueueUserWorkItem(ProcessFile, filePath);
