@@ -41,7 +41,7 @@ Located in [this file](test_task(C#).pdf).
      docker exec -d [RABBITMQ_CONTAINER_NAME] sh /usr/local/bin/init.sh
      ```
    This command configures RabbitMQ by creating the required users for the application.
-     - Replace `[RABBITMQ_CONTAINER_NAME]` with the actual name of your RabbitMQ container.
+     - Replace `[RABBITMQ_CONTAINER_NAME]` with the actual name of your RabbitMQ container. It should have a name something like "labinventtesttask-rabbitmq-1".
      - `/usr/local/bin/init.sh` is the full path to the script inside the container.
    
       >**If you want to change the script path, change the following lines and re-execute the steps starting from step 3**
