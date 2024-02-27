@@ -1,0 +1,18 @@
+<InstrumentStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" schemaVersion="1.0.1">
+	<PackageID>LicArt62</PackageID>
+	<DeviceStatus>
+		<ModuleCategoryID>SAMPLER</ModuleCategoryID>
+		<IndexWithinRole>0</IndexWithinRole>
+		<RapidControlStatus>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;CombinedSamplerStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;ModuleState&gt;Online&lt;/ModuleState&gt;&lt;IsBusy&gt;false&lt;/IsBusy&gt;&lt;IsReady&gt;true&lt;/IsReady&gt;&lt;IsError&gt;false&lt;/IsError&gt;&lt;KeyLock&gt;false&lt;/KeyLock&gt;&lt;Status&gt;0&lt;/Status&gt;&lt;Vial&gt;L-A-1&lt;/Vial&gt;&lt;Volume&gt;0&lt;/Volume&gt;&lt;MaximumInjectionVolume&gt;0&lt;/MaximumInjectionVolume&gt;&lt;RackL&gt;Tray54C&lt;/RackL&gt;&lt;RackR&gt;Tray54C&lt;/RackR&gt;&lt;RackInf&gt;0&lt;/RackInf&gt;&lt;Buzzer&gt;true&lt;/Buzzer&gt;&lt;/CombinedSamplerStatus&gt;</RapidControlStatus>
+	</DeviceStatus>
+	<DeviceStatus>
+		<ModuleCategoryID>QUATPUMP</ModuleCategoryID>
+		<IndexWithinRole>0</IndexWithinRole>
+		<RapidControlStatus>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;CombinedPumpStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;ModuleState&gt;Online&lt;/ModuleState&gt;&lt;IsBusy&gt;false&lt;/IsBusy&gt;&lt;IsReady&gt;true&lt;/IsReady&gt;&lt;IsError&gt;false&lt;/IsError&gt;&lt;KeyLock&gt;false&lt;/KeyLock&gt;&lt;Mode&gt;ISO&lt;/Mode&gt;&lt;Flow&gt;0&lt;/Flow&gt;&lt;PercentB&gt;0&lt;/PercentB&gt;&lt;PercentC&gt;0&lt;/PercentC&gt;&lt;PercentD&gt;0&lt;/PercentD&gt;&lt;MinimumPressureLimit&gt;0&lt;/MinimumPressureLimit&gt;&lt;MaximumPressureLimit&gt;400.0330947751624&lt;/MaximumPressureLimit&gt;&lt;Pressure&gt;0&lt;/Pressure&gt;&lt;PumpOn&gt;false&lt;/PumpOn&gt;&lt;Channel&gt;0&lt;/Channel&gt;&lt;/CombinedPumpStatus&gt;</RapidControlStatus>
+	</DeviceStatus>
+	<DeviceStatus>
+		<ModuleCategoryID>COLCOMP</ModuleCategoryID>
+		<IndexWithinRole>0</IndexWithinRole>
+		<RapidControlStatus>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;CombinedOvenStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;ModuleState&gt;Online&lt;/ModuleState&gt;&lt;IsBusy&gt;false&lt;/IsBusy&gt;&lt;IsReady&gt;true&lt;/IsReady&gt;&lt;IsError&gt;false&lt;/IsError&gt;&lt;KeyLock&gt;false&lt;/KeyLock&gt;&lt;UseTemperatureControl&gt;false&lt;/UseTemperatureControl&gt;&lt;OvenOn&gt;false&lt;/OvenOn&gt;&lt;Temperature_Actual&gt;26.22&lt;/Temperature_Actual&gt;&lt;Temperature_Room&gt;27.81&lt;/Temperature_Room&gt;&lt;MaximumTemperatureLimit&gt;0&lt;/MaximumTemperatureLimit&gt;&lt;Valve_Position&gt;0&lt;/Valve_Position&gt;&lt;Valve_Rotations&gt;0&lt;/Valve_Rotations&gt;&lt;Buzzer&gt;true&lt;/Buzzer&gt;&lt;/CombinedOvenStatus&gt;</RapidControlStatus>
+	</DeviceStatus>
+</InstrumentStatus>

@@ -16,9 +16,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabinventTestTask.Infrastructure", "LabinventTestTask.Infrastructure\LabinventTestTask.Infrastructure.csproj", "{5BFC87A3-C9B2-416D-BE6E-026D9B33313A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{2744E6E6-A694-473E-9368-32A339855639}"
-	ProjectSection(SolutionItems) = preProject
-		test_task(C#).pdf = test_task(C#).pdf
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{40708A7C-A358-41EF-984F-8C00C50852C2}"
 	ProjectSection(SolutionItems) = preProject
@@ -29,6 +26,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{10660CA6-9477-45A2-8EA5-930D83B29A5F}"
 	ProjectSection(SolutionItems) = preProject
 		init.sh = init.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Additional", "Additional", "{C28CB5C6-7905-4623-BA74-54791F849F01}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		test_task(C#).pdf = test_task(C#).pdf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestData", "TestData", "{E3197596-50A4-4D2D-BA47-BC5C89FFD993}"
+	ProjectSection(SolutionItems) = preProject
+		TestData\status.xml = TestData\status.xml
+		TestData\status1.xml = TestData\status1.xml
+		TestData\status2.xml = TestData\status2.xml
 	EndProjectSection
 EndProject
 Global
@@ -68,6 +78,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{40708A7C-A358-41EF-984F-8C00C50852C2} = {2744E6E6-A694-473E-9368-32A339855639}
 		{10660CA6-9477-45A2-8EA5-930D83B29A5F} = {2744E6E6-A694-473E-9368-32A339855639}
+		{E3197596-50A4-4D2D-BA47-BC5C89FFD993} = {C28CB5C6-7905-4623-BA74-54791F849F01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9B445311-94A2-4340-A4E6-974DE8FA49C5}

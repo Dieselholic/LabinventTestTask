@@ -1,28 +1,7 @@
-# Local Deployment with Docker
-
-To run the application locally, we'll use Docker Desktop. I've prepared docker-compose.yml file, so most of the configuration work is already done. This will be run on Windows, so if you have a different OS, some steps will need to be modified.
+# Test task for Labinvent
 
 ## Terms of the task
 Located in [this file](test_task(C#).pdf).
-
-# Changing Applications Settings
-
-You have the flexibility to modify various application properties by editing the `appsettings.json` files for the following services:
-
-- **FileParserService:** [appsettings.json](LabinventTestTask.FileParserService/appsettings.json)
-- **DataProcessorService:** [appsettings.json](LabinventTestTask.DataProcessorService/appsettings.json)
-
-Most of the customization options are self-describing.
-
-### Example Customizations:
-
-1. Enable or Disable File Logging for the DataProcessorService:
-   - In the `DataProcessorService` settings file, modify the ["IsFileLoggingEnabled" parameter in line 4](LabinventTestTask.DataProcessorService/appsettings.json#L4).
-
-2. Configure the xml file directory check interval for the FileParserService:
-   - In the `FileParserService` settings file, change the number of milliseconds in the ["ServiceTimeoutMs" parameter in line 10](LabinventTestTask.FileParserService/appsettings.json#L10).
-
-Feel free to explore and tailor the customization options according to your needs.
 
 ## Steps to Deploy:
 
@@ -31,12 +10,13 @@ Feel free to explore and tailor the customization options according to your need
 
 1. **Configure Docker Compose File:**
    - Open the [`docker-compose.yml`](docker-compose.yml) file and locate [line 13](docker-compose.yml#L13).
-   - Replace the `FILEPATH` placeholder with the path to the folder where your XML files will be stored.
-   - After the changes, it should look something like this(for Windows):
-     ```yml
+   - If you don't have your own directory with .xml files, you can delete this line and uncomment the line following it with the path to the test data.
+   - Otherwise replace the `FILEPATH` placeholder with the path to the folder where your XML files will be stored.
+      - After the changes, it should look something like this(for Windows):
+   ```yml
      volumes:
         - C:\Users\Admin\Desktop\XML\:/app/data/XMLStorage
-     ```
+   ```
 
 2. **Open Command Prompt (CMD) in [Repository Root](.):**
    - It's tough, but I'm sure you'll do well.
@@ -65,7 +45,7 @@ Feel free to explore and tailor the customization options according to your need
      - `/usr/local/bin/init.sh` is the full path to the script inside the container.
    
       >**If you want to change script path, change the following lines**
-      >- [Line 43 in docker-compose.yml](docker-compose.yml#L43)
+      >- [Line 44 in docker-compose.yml](docker-compose.yml#L44)
       >- [Line 3 in Dockerfile.RabbitMQ](Docker/Dockerfile.RabbitMQ#L3)
       >- [Line 5 in Dockerfile.RabbitMQ](Docker/Dockerfile.RabbitMQ#L5)
 
@@ -75,6 +55,28 @@ Feel free to explore and tailor the customization options according to your need
 7. **You're Done!**
    - Congratulations! You're all set up and ready to enjoy the application.
 
-Feel free to explore and modify the setup according to your needs. If you encounter any issues or have questions, refer to the documentation or seek assistance in the project community.
+
+## Changing Applications Settings
+
+You have the flexibility to modify various application properties by editing the `appsettings.json` files for the following services:
+
+- **FileParserService:** [appsettings.json](LabinventTestTask.FileParserService/appsettings.json)
+- **DataProcessorService:** [appsettings.json](LabinventTestTask.DataProcessorService/appsettings.json)
+
+Most of the customization options are self-describing.
+
+#### Example Customizations:
+
+1. Enable or Disable File Logging for the DataProcessorService:
+   - In the `DataProcessorService` settings file, modify the ["IsFileLoggingEnabled" parameter in line 4](LabinventTestTask.DataProcessorService/appsettings.json#L4).
+
+2. Configure the xml file directory check interval for the FileParserService:
+   - In the `FileParserService` settings file, change the number of milliseconds in the ["ServiceTimeoutMs" parameter in line 10](LabinventTestTask.FileParserService/appsettings.json#L10).
+
+Feel free to explore and tailor the customization options according to your needs.
+
+## Afterword
+
+Feel free to explore and modify the settings to suit your needs. If you have any problems or questions, please refer to the documentation or contact me for assistance.
 
 Enjoy your delightful experience! 😊
