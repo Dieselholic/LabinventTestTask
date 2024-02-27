@@ -6,15 +6,21 @@ services:
       context: .
       dockerfile: LabinventTestTask.FileParserService/Dockerfile
     restart: always
+    ports:
+      - "8080:8080"
+      - "8081:8081"
     volumes:
-      - C:\Users\ALFA\Desktop\XML\:/app/data/XMLStorage
+      - FILEPATH:/app/data/XMLStorage
     environment:
       - BUILD_CONFIGURATION=Release
 
   data-processor:
    build:
      context: .
-     dockerfile: LabinventTestTask.DataProcessorService/Dockerfile.DPService
+     dockerfile: LabinventTestTask.DataProcessorService/Dockerfile
+   ports:
+      - "8082:8080"
+      - "8083:8081"
    restart: always
    environment:
      - BUILD_CONFIGURATION=Release

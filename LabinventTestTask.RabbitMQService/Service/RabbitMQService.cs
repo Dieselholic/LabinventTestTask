@@ -15,34 +15,11 @@ namespace LabinventTestTask.RabbitMQ.Service
         private IConnection? _connection;
         private IModel? _channel;
 
-        private bool TryRebootIfDead()
-        {
-            if (_channel is not null && _channel.IsOpen)
-            {
-                return true;
-            }
-
-            if (_connection is null || !_connection.IsOpen)
-            {
-                if (!TryCreateConnection())
-                {
-                    return false;
-                }
-            }
-
-            if (TryCreateChannel() && _channel!.IsOpen)
-            {
-                return true;
-            }
-         
-            return false;
-        }
-
         public bool IsAlive
         {
             get
             {
-                return TryRebootIfDead();
+                return TryCreateConnection() && TryCreateChannel();
             }
         }
 
@@ -50,10 +27,9 @@ namespace LabinventTestTask.RabbitMQ.Service
         {
             _options = options.Value;
             _loggerService = loggerService;
-            _loggerService.LogInformation($"Hostname: {_options.RabbitMQHost}; Username: {_options.Username}.",GetType().Name);
             _connectionFactory = new ConnectionFactory()
             {
-                HostName = _options.RabbitMQHost,
+                HostName = _options.HostName,
                 UserName = _options.Username,
                 Password = _options.Password
             };
@@ -70,14 +46,10 @@ namespace LabinventTestTask.RabbitMQ.Service
 
             try
             {
-                _loggerService.LogInformation($"Attempting to declare queue...", GetType().Name);
-
-                _channel?.QueueDeclare(
-                    queue: _options.RabbitMQQueue,
-                    durable: true,
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: null);
+                if (!TryDeclageQueue())
+                {
+                    return;
+                }
 
                 var body = Encoding.UTF8.GetBytes(jsonData);
 
@@ -85,11 +57,11 @@ namespace LabinventTestTask.RabbitMQ.Service
 
                 _channel.BasicPublish(
                     exchange: string.Empty,
-                    routingKey: _options.RabbitMQQueue,
+                    routingKey: _options.QueueName,
                     basicProperties: null,
                     body: body);
 
-                _loggerService.LogInformation("Success.", GetType().Name);
+                _loggerService.LogInformation($"Success", GetType().Name);
             }
             catch (Exception ex)
             {
@@ -109,14 +81,10 @@ namespace LabinventTestTask.RabbitMQ.Service
 
             try
             {
-                _loggerService.LogInformation($"Attempting to declare queue...", GetType().Name);
-
-                _channel?.QueueDeclare(
-                    queue: _options.RabbitMQQueue,
-                    durable: true,
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: null);
+                if (!TryDeclageQueue())
+                {
+                    return;
+                }
 
                 _loggerService.LogInformation($"Attempting to create consumer...", GetType().Name);
 
@@ -128,6 +96,7 @@ namespace LabinventTestTask.RabbitMQ.Service
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
+
                     _loggerService.LogInformation($"Recieved message \"{message}\"", GetType().Name);
 
                     await dPMethod(message);
@@ -137,47 +106,80 @@ namespace LabinventTestTask.RabbitMQ.Service
 
                 _loggerService.LogInformation($"Attempting to start consume...", GetType().Name);
 
-                _channel.BasicConsume(queue: _options.RabbitMQQueue, autoAck: false, consumer: consumer);
+                _channel.BasicConsume(queue: _options.QueueName, autoAck: false, consumer: consumer);
+
+                _loggerService.LogInformation($"Success", GetType().Name);
             }
             catch (Exception ex)
             {
                 _loggerService.LogError(ex, GetType().Name);
                 throw;
             }
-
-            _loggerService.LogInformation("Success.", GetType().Name);
         }
 
         private bool TryCreateConnection()
         {
+            if (_connection is not null && _connection.IsOpen)
+            {
+                return true;
+            }
+
             try
             {
                 _loggerService.LogInformation("Attempting to create connection...", GetType().Name);
                 _connection = _connectionFactory.CreateConnection();
+                return true;
             }
             catch (Exception)
             {
-                _loggerService.LogInformation($"Connection is not alive.", GetType().Name);
-                return false;
+                _loggerService.LogInformation($"Failed to create connection.", GetType().Name);
             }
 
-            return true;
+            return false;
         }
 
         private bool TryCreateChannel()
         {
+            if (_channel is not null && _channel.IsOpen)
+            {
+                return true;
+            }
+
             try
             {
-                if (_connection != null)
-                {
-                    _loggerService.LogInformation("Attempting to create channel...", GetType().Name);
-                    _channel = _connection.CreateModel();
-                    return true;
-                }
+                _loggerService.LogInformation("Attempting to create channel...", GetType().Name);
+                _channel = _connection!.CreateModel();
+                return true;
             }
             catch (Exception)
             {
-                _loggerService.LogInformation($"Connection is not alive.", GetType().Name);
+                _loggerService.LogInformation($"Failed to create channel.", GetType().Name);
+            }
+
+            return false;
+        }
+
+        private bool TryDeclageQueue()
+        {
+            if (_channel?.CurrentQueue is not null)
+            {
+                return true;
+            }
+
+            try
+            {
+                _loggerService.LogInformation($"Attempting to declare queue...", GetType().Name);
+                _channel?.QueueDeclare(
+                    _options.QueueName,
+                    _options.IsQueueDurable,
+                    _options.IsQueueExclusive,
+                    _options.HasAutoDelete,
+                    null);
+                return true;
+            }
+            catch (Exception)
+            {
+                _loggerService.LogInformation($"Failed to declare queue.", GetType().Name);
             }
 
             return false;

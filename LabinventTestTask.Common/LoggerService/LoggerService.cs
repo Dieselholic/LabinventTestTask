@@ -13,10 +13,25 @@ namespace LabinventTestTask.Common.LoggerService
         public LoggerService(IOptions<LoggerServiceOptions> options)
         {
             _options = options.Value;
-            _logger = new LoggerConfiguration()
-                .WriteTo.Console()
-                .WriteTo.File(_options.LogsFilePath, rollingInterval: RollingInterval.Day)
-                .CreateLogger();
+            _logger = GetLoggerConfiguration().CreateLogger();
+        }
+
+        private LoggerConfiguration GetLoggerConfiguration() 
+        {
+            var loggerConfig = new LoggerConfiguration();
+
+            if (_options.IsConsoleLoggingEnabled)
+            {
+                loggerConfig.WriteTo.Console();
+            }
+            if (_options.IsFileLoggingEnabled)
+            {
+                loggerConfig.WriteTo.File(
+                    _options.LogsFilePath,
+                    rollingInterval: RollingInterval.Day);
+            }
+
+            return loggerConfig;
         }
 
         public void LogInformation(string message, string serviceName, [CallerMemberName] string memberName = "")
@@ -26,26 +41,13 @@ namespace LabinventTestTask.Common.LoggerService
 
         public void LogError(Exception ex, string serviceName, [CallerMemberName] string memberName = "")
         {
-            if (_options.IsStackTraceOn)
-            {
-                _logger.Error(ex, "| SERVICE : {serviceName,-25}| METHOD : {methodName,-25}| ERROR MESSAGE : {message}\nSTACK TRACE : {stackTrace}", serviceName, memberName, ex.Message, ex.StackTrace);
-            }
-            else
-            {
-                _logger.Error(ex, "| SERVICE : {serviceName,-25}| METHOD : {methodName,-25}| ERROR MESSAGE : {message}", serviceName, memberName, ex.Message);
-            }
+            _logger.Error(ex, "| SERVICE : {serviceName,-25}| METHOD : {methodName,-25}| ERROR MESSAGE : {message}", serviceName, memberName, ex.Message);
         }
+        
 
         public void LogFatal(Exception ex, string serviceName, [CallerMemberName] string memberName = "")
         {
-            if (_options.IsStackTraceOn)
-            {
-                _logger.Fatal(ex, "| SERVICE : {serviceName,-25}| METHOD : {methodName,-25}| ERROR MESSAGE : {message}\nSTACK TRACE : {stackTrace}", serviceName, memberName, ex.Message, ex.StackTrace);
-            }
-            else
-            {
-                _logger.Fatal(ex, "| SERVICE : {serviceName,-25}| METHOD : {methodName,-25}| ERROR MESSAGE : {message}", serviceName, memberName, ex.Message);
-            }
+            _logger.Fatal(ex, "| SERVICE : {serviceName,-25}| METHOD : {methodName,-25}| FATAL ERROR MESSAGE : {message}", serviceName, memberName, ex.Message);
         }
     }
 }

@@ -11,18 +11,18 @@ namespace DataProcessorService.DataProcessing
     {
         private readonly IRabbitMQService _rabbitMQService;
         private readonly ILoggerService _loggerService;
-        private readonly DataContext _dbContext;
+        private readonly IDbContextFactory<DataContext> _contextFactory;
         private readonly IHostApplicationLifetime _appLifetime;
 
         public DataProcessingService(
             IRabbitMQService rabbitMQService,
             ILoggerService loggerService,
-            DataContext dbContext,
+            IDbContextFactory<DataContext> contextFactory,
             IHostApplicationLifetime appLifetime)
         {
             _rabbitMQService = rabbitMQService;
             _loggerService = loggerService;
-            _dbContext = dbContext;
+            _contextFactory = contextFactory;
             _loggerService.LogInformation($"Service has been started...", GetType().Name);
             _appLifetime = appLifetime;
         }
@@ -90,25 +90,28 @@ namespace DataProcessorService.DataProcessing
 
             try
             {
-                foreach (var moduleData in listOfModuleData)
+                using (var _dbContext = await _contextFactory.CreateDbContextAsync())
                 {
-                    _loggerService.LogInformation($"Attempting to apply data to database...", GetType().Name);
-
-                    var existingData = await _dbContext.ModuleData.FirstOrDefaultAsync(md => md.ModuleCategoryID == moduleData.ModuleCategoryID);
-
-                    if (existingData != null)
+                    foreach (var moduleData in listOfModuleData)
                     {
-                        existingData.ModuleState = moduleData.ModuleState;
-                        _dbContext.Entry(existingData).State = EntityState.Modified;
+                        _loggerService.LogInformation($"Attempting to apply data to database...", GetType().Name);
+
+                        var existingData = await _dbContext.ModuleData.FirstOrDefaultAsync(md => md.ModuleCategoryID == moduleData.ModuleCategoryID);
+
+                        if (existingData != null)
+                        {
+                            existingData.ModuleState = moduleData.ModuleState;
+                            _dbContext.Entry(existingData).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            var newData = new ModuleData(moduleData.ModuleCategoryID, moduleData.ModuleState);
+                            _dbContext.ModuleData.Add(newData);
+                        }
                     }
-                    else
-                    {
-                        var newData = new ModuleData(moduleData.ModuleCategoryID, moduleData.ModuleState);
-                        _dbContext.ModuleData.Add(newData);
-                    }
+
+                    await _dbContext.SaveChangesAsync();
                 }
-
-                await _dbContext.SaveChangesAsync();
 
                 _loggerService.LogInformation($"Success.", GetType().Name);
             }

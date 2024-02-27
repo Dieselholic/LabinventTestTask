@@ -16,12 +16,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabinventTestTask.Infrastructure", "LabinventTestTask.Infrastructure\LabinventTestTask.Infrastructure.csproj", "{5BFC87A3-C9B2-416D-BE6E-026D9B33313A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{2744E6E6-A694-473E-9368-32A339855639}"
+	ProjectSection(SolutionItems) = preProject
+		test_task(C#).pdf = test_task(C#).pdf
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{40708A7C-A358-41EF-984F-8C00C50852C2}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 		Docker\Dockerfile.RabbitMQ = Docker\Dockerfile.RabbitMQ
-		Docker\Dockerfile.SQLite = Docker\Dockerfile.SQLite
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{10660CA6-9477-45A2-8EA5-930D83B29A5F}"
