@@ -10,12 +10,12 @@ Located in [this file](test_task(C#).pdf).
 
 1. **Configure Docker Compose File:**
    - Open the [`docker-compose.yml`](docker-compose.yml) file and locate [line 13](docker-compose.yml#L13).
-   - If you don't have your own directory with .xml files, you can delete this line and uncomment the line following it with the path to the test data.
-   - Otherwise replace the `FILEPATH` placeholder with the path to the folder where your XML files will be stored.
+   - If you don't have your own directory with .xml files, you can **delete [this line](docker-compose.yml#L13)** and **uncomment [this line](docker-compose.yml#L14)**. This will provide the application to the path to the test data I added for a quick start.
+   - **Otherwise replace** the `FILEPATH` placeholder with the path to the folder where your XML files will be stored.
       - After the changes, it should look something like this(for Windows):
    ```yml
      volumes:
-        - C:\Users\Admin\Desktop\XML\:/app/data/XMLStorage
+        - C:\Users\Admin\Desktop\XMLFilesStorage:/app/data/XMLStorage
    ```
 
 2. **Open Command Prompt (CMD) in [Repository Root](.):**
