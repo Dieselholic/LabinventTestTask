@@ -32,9 +32,9 @@ Located in [this file](test_task(C#).pdf).
 4. **Check Deployed Containers:**
    - Run the following command:
      ```bash
-     docker ps
+     docker ps --format {{.Names}}
      ```
-   Note down the name of the container where RabbitMQ is deployed.
+   Copy the name of the container in which RabbitMQ is deployed.
 
 5. **Apply Configuration to RabbitMQ:**
    - Run the following command:
